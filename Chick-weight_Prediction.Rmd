@@ -1,0 +1,34 @@
+---
+title: "Chick-weight Prediction"
+author: "AryaVa"
+date: "12/3/2021"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(datasets)
+library(ggplot2)
+library(dplyr)
+library(rmarkdown)
+library(graphics)
+library(reshape2)
+```
+## Let's take a look at the dataset.
+```{r, include=TRUE}
+head(ChickWeight,24) ### Shows first 24 rows
+tail(ChickWeight)    ### Shows last 6 rows
+summary(ChickWeight) ### gives a summary of the dataset
+dim(ChickWeight)     ### gives te dimesnsions or the shape of the dataset
+```
+## Let's perform an exploratory data analysis on the dataset.
+```{r, include=TRUE}
+data("ChickWeight")
+qplot(Time, weight, data= ChickWeight, color= Diet, main="Scatterplot of weight vs time for different diets")
+ggplot(data= ChickWeight, aes(Time, weight, color=factor(Diet)))+facet_grid(.~Diet)+ggtitle("Scatterplot grids of weight vs time for different diets")+geom_point()
+```
+### The graphs show that Diet 3 has highest variance. The chicks on this feed have gained more weight.
+### To predict the weights further, we will use Random Forest, KNN, Linear reression algorithms and find out the best way.
+
+
